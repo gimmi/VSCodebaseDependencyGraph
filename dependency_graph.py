@@ -82,6 +82,7 @@ class MSBuildParser(object):
     def parse_assembly_definition(self, assembly_definition):
         assembly_props = re.split('\s*,\s*', assembly_definition)
         assembly_name = assembly_props.pop(0)
+        assembly_props = filter(len, assembly_props)
         assembly_props = {k: v for k, v in [re.split('\s*=\s*', x) for x in assembly_props]}
         return assembly_name.lower(), assembly_props
 
