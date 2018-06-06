@@ -247,11 +247,11 @@ def main():
 
     modules = pasre_dir(base_dir)
 
-    modules.remove_by_pattern('tests?\.csproj$')
-    modules.remove_by_pattern('\.tests?\.')
-    modules.remove_by_pattern('\.testsupport\.')
-    modules.remove_by_pattern('\.testsuite\.csproj$')
-    modules.remove_by_pattern(r'\\gmock-\d.\d.\d\\')
+    # modules.remove_by_pattern('tests?\.csproj$')
+    # modules.remove_by_pattern('\.tests?\.')
+    # modules.remove_by_pattern('\.testsupport\.')
+    # modules.remove_by_pattern('\.testsuite\.csproj$')
+    # modules.remove_by_pattern(r'\\gmock-\d.\d.\d\\')
 
     for module in list(modules):
         if not os.path.splitext(module.path)[1] in PROJECT_FILE_EXTENSIONS:
