@@ -4,6 +4,7 @@ import logging
 import re
 import json
 import sys
+import urllib.parse
 
 
 class Module(object):
@@ -125,7 +126,8 @@ class MSBuildParser(object):
             )
 
             for project_reference_el in tree.findall('.//{http://schemas.microsoft.com/developer/msbuild/2003}ProjectReference[@Include]'):
-                ref_prj_path = os.path.abspath(os.path.join(os.path.dirname(proj_path), project_reference_el.attrib['Include']))
+                include_attr = urllib.parse.unquote(project_reference_el.attrib['Include'])
+                ref_prj_path = os.path.abspath(os.path.join(os.path.dirname(proj_path), include_attr))
                 if not os.path.exists(ref_prj_path):
                     logging.warn('Broken reference "%s" => "%s"', proj_path, ref_prj_path)
                     continue
